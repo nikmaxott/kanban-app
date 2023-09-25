@@ -1,8 +1,12 @@
 import { FormEvent, useEffect, useState } from "react";
 import { supabase } from "../helpers/supabase";
-import { Session } from "@supabase/supabase-js"
+import { Session } from "@supabase/supabase-js";
 
-export default function Account({ session } : { session: Session}): JSX.Element {
+export default function Account({
+  session,
+}: {
+  session: Session;
+}): JSX.Element {
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState<string>();
   const [website, setWebsite] = useState<string>();
@@ -13,7 +17,7 @@ export default function Account({ session } : { session: Session}): JSX.Element 
       setLoading(true);
       const { user } = session;
 
-      let { data, error } = await supabase
+      const { data, error } = await supabase
         .from("profiles")
         .select(`username, website, avatar_url`)
         .eq("id", user.id)
@@ -47,7 +51,7 @@ export default function Account({ session } : { session: Session}): JSX.Element 
       updated_at: new Date(),
     };
 
-    let { error } = await supabase.from("profiles").upsert(updates);
+    const { error } = await supabase.from("profiles").upsert(updates);
 
     if (error) {
       alert(error.message);
@@ -55,7 +59,7 @@ export default function Account({ session } : { session: Session}): JSX.Element 
       setAvatarUrl(avatarUrl);
     }
     setLoading(false);
-  };
+  }
 
   return (
     <form onSubmit={updateProfile} className="form-widget">
