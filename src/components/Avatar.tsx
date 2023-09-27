@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { supabase } from "../helpers/supabase";
 
-export default function Avatar({ url, size, onUpload }) {
+export default function Avatar({ url, size, onUpload }: {url?: string, size: number, onUpload: (event: FormEvent, avatarUrl: string) => void}) {
   const [avatarUrl, setAvatarUrl] = useState<string>();
   const [uploading, setUploading] = useState(false);
 
