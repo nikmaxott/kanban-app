@@ -43,7 +43,7 @@ export default function Account({ session } : { session: Session}): JSX.Element 
       id: user.id,
       username,
       website,
-      avatarUrl,
+      avatar_url: avatarUrl,
       updated_at: new Date(),
     };
 
