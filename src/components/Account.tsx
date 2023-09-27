@@ -48,7 +48,7 @@ export default function Account({
       id: user.id,
       username,
       website,
-      avatarUrl,
+      avatar_url: avatarUrl,
       updated_at: new Date(),
     };
 
