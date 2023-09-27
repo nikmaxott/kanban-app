@@ -1,6 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { supabase } from "../helpers/supabase";
 import { Session } from "@supabase/supabase-js";
+import Avatar from "./Avatar";
 
 export default function Account({
   session,
@@ -86,6 +87,14 @@ export default function Account({
           onChange={(e) => setWebsite(e.target.value)}
         />
       </div>
+
+      <Avatar
+        url={avatar_url}
+        size={150}
+        onUpload={(event, url) => {
+          updateProfile(event, url);
+        }}
+      />
 
       <div>
         <button
