@@ -1,11 +1,4 @@
 # kanban-app
-A very basic Kanban App, hosted on Supabase
+A very basic To Do list app, that will become a Kanban board, backend is based on Supabase, frontend is React + Vite based.
 
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+More details can be found in the Wiki. Feedback and suggestions always welcome, this is an Alpha Product at the moment, please be gentle with it.
