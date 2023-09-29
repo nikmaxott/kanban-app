@@ -63,7 +63,7 @@ export default function Account({
   }
 
   return (
-    <form onSubmit={updateProfile} className="form-widget">
+    <form onSubmit={updateProfile}>
       <div>
         <label htmlFor="email">Email</label>
         <input id="email" type="text" value={session.user.email} disabled />
@@ -97,21 +97,13 @@ export default function Account({
       />
 
       <div>
-        <button
-          className="button block primary"
-          type="submit"
-          disabled={loading}
-        >
+        <button type="submit" disabled={loading}>
           {loading ? "Loading ..." : "Update"}
         </button>
       </div>
 
       <div>
-        <button
-          className="button block"
-          type="button"
-          onClick={() => supabase.auth.signOut()}
-        >
+        <button type="button" onClick={() => supabase.auth.signOut()}>
           Sign Out
         </button>
       </div>
