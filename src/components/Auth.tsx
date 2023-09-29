@@ -63,9 +63,7 @@ export default function Auth() {
                 disabled={loading}
               >
                 {loading ? <span>Loading</span> : <span>Login</span>}
-              </button>
-            </form>
-            <button
+              </button>name@email.com
               className="mt-4 w-full justify-center rounded bg-white h-10 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-200"
               onClick={() => setUseSSO(!useSSO)}
             >

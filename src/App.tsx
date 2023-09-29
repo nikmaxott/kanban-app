@@ -17,7 +17,7 @@ function App() {
   }, []);
 
   return (
-    <div className="container">
+    <div>
       {!session ? (
         <Auth />
       ) : (
