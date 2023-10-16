@@ -1,14 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import { createBrowserRouter, LoaderFunctionArgs, redirect, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  LoaderFunctionArgs,
+  redirect,
+  RouterProvider,
+} from "react-router-dom";
 import "./index.css";
 import Root from "./routes/root.js";
 import ErrorPage from "./error-page.js";
-import Auth from "./components/Auth.js";
 import Register from "./routes/register.js";
 import Index from "./routes/index.js";
 import { supabase } from "./helpers/supabase.js";
+import Login from "./routes/login.js";
+import ForgotPassword from "./routes/forgot-password.js";
 
 const router = createBrowserRouter([
   {
@@ -31,22 +37,17 @@ const router = createBrowserRouter([
   },
   {
     path: "login",
-    element: <Auth />,
+    element: <Login />,
   },
   {
     path: "register",
     element: <Register />,
   },
   {
-    path: "/logout",
-    async action() {
-      // We signout in a "resource route" that we can hit from a fetcher.Form
-      await supabase.auth.signOut();
-      return redirect("/");
-    },
+    path: "forgot-password",
+    element: <ForgotPassword />,
   },
 ]);
-
 
 async function protectedLoader({ request }: LoaderFunctionArgs) {
   // If the user is not logged in and tries to access a protected route, we redirect
