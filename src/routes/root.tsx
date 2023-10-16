@@ -1,8 +1,10 @@
-import { Outlet, NavLink, useNavigation } from "react-router-dom";
+import { Outlet, NavLink, useNavigation, useNavigate } from "react-router-dom";
 import { supabase } from "../helpers/supabase";
 
 export default function Root() {
   const navigation = useNavigation();
+  const navigate = useNavigate();
+
   return (
     <div className="flex">
       <aside className="flex flex-col w-1/5">
@@ -22,7 +24,13 @@ export default function Root() {
         >
           Settings
         </NavLink>
-        <button type="button" onClick={() => supabase.auth.signOut()}>
+        <button
+          type="button"
+          onClick={() => {
+            supabase.auth.signOut();
+            navigate("/login");
+          }}
+        >
           Sign Out
         </button>
       </aside>
