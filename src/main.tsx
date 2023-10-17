@@ -15,6 +15,7 @@ import Index from "./routes/index.js";
 import { supabase } from "./helpers/supabase.js";
 import Login from "./routes/login.js";
 import ForgotPassword from "./routes/forgot-password.js";
+import UpdatePassword from "./routes/update-password.js";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,11 @@ const router = createBrowserRouter([
   {
     path: "forgot-password",
     element: <ForgotPassword />,
+  },
+  {
+    path: "update-password",
+    loader: protectedLoader,
+    element: <UpdatePassword />,
   },
 ]);
 
