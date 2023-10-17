@@ -1,3 +1,5 @@
+import ForgotPasswordForm from "../components/ForgotPasswordForm";
+
 export default function ForgotPassword() {
     return (
       <div className="flex min-h-full flex-col justify-center ">
@@ -5,6 +7,7 @@ export default function ForgotPassword() {
           <h1 className="text-2xl h-[200px] w-[200px] text-center mx-auto border rounded-full border-gray-600">
             Kanban App
           </h1>
+          <ForgotPasswordForm />
         </div>
       </div>
     );
