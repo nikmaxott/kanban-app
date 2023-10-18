@@ -37,7 +37,7 @@ export default function Root() {
       <article
         className={`p-4 ${
           navigation.state === "loading" ? "bg-black" : "bg-white"
-        }`}
+        } w-4/5`}
       >
         <Outlet />
       </article>
