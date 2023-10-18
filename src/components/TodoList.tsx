@@ -31,14 +31,20 @@ export default function TodoList() {
 
   return (
     <>
-      {todos
-        ?.filter((val) => !val.is_complete)
-        .map((task: Todo) => <TodoItem item={task} />)}
+      {loading ? (
+        <>Loading...</>
+      ) : (
+        <>
+          {todos
+            ?.filter((val) => !val.is_complete)
+            .map((task: Todo) => <TodoItem item={task} key={task.id} />)}
 
-      <h2 className="text-xl mt-4">Done</h2>
-      {todos
-        ?.filter((val) => val.is_complete)
-        .map((task: Todo) => <TodoItem item={task} />)}
+          <h2 className="text-xl mt-4">Done</h2>
+          {todos
+            ?.filter((val) => val.is_complete)
+            .map((task: Todo) => <TodoItem item={task} key={task.id} />)}
+        </>
+      )}
     </>
   );
 }

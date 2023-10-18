@@ -12,8 +12,7 @@ export default function TodoItem({ item }: { item: Todo }) {
       .eq("id", item.id)
       .select();
 
-    console.log(data);
-    item.is_complete = !item.is_complete;
+    if (!error) item.is_complete = !data[0].is_complete;
   }
 
   return (
@@ -28,17 +27,14 @@ export default function TodoItem({ item }: { item: Todo }) {
         <p
           className={`pl-2 ${
             item.is_complete ? "text-gray-600" : "text-black"
-          } ${
-            currentDate > dueDate && !item.is_complete && `text-red-600`
-          }`}
+          } ${currentDate > dueDate && !item.is_complete && `text-red-600`}`}
         >
           {item.task}
         </p>
       </div>
       {!item.is_complete && item.end_date && (
         <span className={`${currentDate > dueDate && "text-red-600"}`}>
-          {dueDate.getDate()}/{dueDate.getMonth() + 1}/
-          {dueDate.getFullYear()}
+          {dueDate.getDate()}/{dueDate.getMonth() + 1}/{dueDate.getFullYear()}
         </span>
       )}
     </div>
