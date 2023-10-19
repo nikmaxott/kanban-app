@@ -4,4 +4,5 @@ export type Todo = {
   task?: string;
   is_complete?: boolean;
   end_date?: string;
+  start_date?: string;
 };
