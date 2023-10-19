@@ -1,7 +1,15 @@
 import { supabase } from "../helpers/supabase";
 import { Todo } from "../type";
 
-export default function TodoItem({ item }: { item: Todo }) {
+export default function TodoItem({
+  item,
+  dialog,
+  setCurrentItem,
+}: {
+  item: Todo;
+  dialog: React.RefObject<HTMLDialogElement>;
+  setCurrentItem: (item: Todo) => void;
+}) {
   const dueDate = new Date(item.end_date || "");
   const currentDate = new Date();
 
@@ -28,6 +36,11 @@ export default function TodoItem({ item }: { item: Todo }) {
           className={`pl-2 ${
             item.is_complete ? "text-gray-600" : "text-black"
           } ${currentDate > dueDate && !item.is_complete && `text-red-600`}`}
+          onClick={() => {
+            setCurrentItem(item);
+            dialog.current?.showModal();
+            console.log("edit");
+          }}
         >
           {item.task}
         </p>
