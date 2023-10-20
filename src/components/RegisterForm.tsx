@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { supabase } from "../helpers/supabase";
 import StyledInput from "./Styled/Input";
-import { ErrorMessage, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 import * as Yup from "yup";
 
 interface FormValues {
@@ -18,32 +18,27 @@ const RegisterSchema = Yup.object().shape({
 
 export default function RegisterForm() {
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string>();
 
   const initialValues: FormValues = { email: "", password: "" };
-
-  async function handleRegister(event: FormEvent) {
-    event.preventDefault();
-
-    setLoading(true);
-    const { data, error } = await supabase.auth.signUp({
-      email: email,
-      password: password,
-    });
-
-    console.log(data, error);
-
-    //TODO: Deal with if already has SSO
-
-    setLoading(false);
-  }
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={RegisterSchema}
-      onSubmit={handleRegister}
+      onSubmit={async (values) => {
+        setLoading(true);
+        const { error } = await supabase.auth.signUp({
+          email: values.email,
+          password: values.password,
+        });
+
+        if (error) setError(error.message);
+
+        //TODO: Deal with if already has SSO
+
+        setLoading(false);
+      }}
     >
       <Form className="space-y-4 mt-4">
         <div>
@@ -72,6 +67,7 @@ export default function RegisterForm() {
         <button
           className=" w-full justify-center rounded bg-blue-600 h-10 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
           disabled={loading}
+          type="submit"
         >
           {loading ? <span>Loading</span> : <span>Create Account</span>}
         </button>
@@ -86,6 +82,8 @@ export default function RegisterForm() {
           </a>
           .
         </p>
+
+        {error && <span>{error}</span>}
       </Form>
     </Formik>
   );
