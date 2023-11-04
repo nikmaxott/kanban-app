@@ -6,7 +6,7 @@ export default function Auth() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [useSSO, setUseSSO] = useState(false);
+  const [useSSO, setUseSSO] = useState(true);
 
   const navigate = useNavigate()
 

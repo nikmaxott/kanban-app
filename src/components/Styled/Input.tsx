@@ -2,18 +2,18 @@ import { ErrorMessage, Field } from "formik";
 
 export default function StyledInput({
   id,
-  type,
-  placeholder,
-  autocomplete,
-  required,
   name,
+  type="text",
+  placeholder="",
+  autocomplete="",
+  required=false,
 }: {
   id: string;
-  type: string;
-  placeholder: string;
-  autocomplete: string;
-  required: boolean;
   name: string;
+  type: string;
+  placeholder?: string;
+  autocomplete?: string;
+  required: boolean;
 }) {
   return (
     <>
