@@ -8,7 +8,7 @@ export default function Auth() {
   const [password, setPassword] = useState("");
   const [useSSO, setUseSSO] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLoginSSO = async (event: FormEvent) => {
     event.preventDefault();
@@ -41,7 +41,7 @@ export default function Auth() {
     if (error) {
       console.log(error.cause || error.message);
     } else {
-      navigate(from)
+      navigate(from);
     }
   };
 
@@ -58,7 +58,7 @@ export default function Auth() {
                 placeholder="Your email"
                 value={email}
                 required={true}
-              autoComplete="email"
+                autoComplete="email"
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
