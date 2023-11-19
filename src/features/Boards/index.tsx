@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../helpers/supabase";
-import { Session } from "@supabase/supabase-js";
+import BoardItem from "./BoardItem";
+
+export interface Board {
+  name: string;
+  id: string;
+  description: string;
+}
 
 export default function BoardView() {
   const [loading, setLoading] = useState(false);
-  const [boards, setBoards] = useState([]);
+  const [boards, setBoards] = useState<Board[]>([]);
 
   useEffect(() => {
     async function getBoard() {
@@ -25,6 +31,8 @@ export default function BoardView() {
 
     getBoard();
   }, []);
+
+  if (loading) return <p>Loading</p>;
 
   return (
     <>
