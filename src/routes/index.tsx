@@ -1,5 +1,5 @@
-import BoardView from "../features/Boards/BoardView";
-import TodoList from "../features/Todo/TodoList";
+import BoardView from "../features/Boards";
+import TodoList from "../features/Todo";
 import { useState } from "react";
 
 export default function Index() {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Session } from "@supabase/supabase-js";
 import { supabase } from "../helpers/supabase";
-import Account from "../features/Settings/Account";
+import Account from "../features/Settings";
 
 function Settings() {
   const [session, setSession] = useState<Session | null>();

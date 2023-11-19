@@ -1,4 +1,4 @@
-import Auth from "../features/Login/Auth";
+import Auth from "../features/Login";
 import { NavLink } from "react-router-dom";
 
 export default function Login() {
