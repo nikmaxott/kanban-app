@@ -1,4 +1,4 @@
-import Auth from "../components/Auth";
+import Auth from "../features/Login";
 import { NavLink } from "react-router-dom";
 
 export default function Login() {
@@ -11,10 +11,17 @@ export default function Login() {
 
         <Auth />
 
-        <p><NavLink to={`/forgot-password`} className={"hover:underline"}>Reset password</NavLink></p>
+        <p>
+          <NavLink to={`/forgot-password`} className={"hover:underline"}>
+            Reset password
+          </NavLink>
+        </p>
 
         <p className="text-gray-600">
-          No account? <NavLink to={`/register`} className={"text-black hover:underline"}>Create one</NavLink>
+          No account?{" "}
+          <NavLink to={`/register`} className={"text-black hover:underline"}>
+            Create one
+          </NavLink>
         </p>
       </div>
     </div>

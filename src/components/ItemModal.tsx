@@ -2,6 +2,7 @@ import { FormEvent, RefObject, useEffect, useState } from "react";
 import { Todo } from "../type";
 import { supabase } from "../helpers/supabase";
 import { Session } from "@supabase/supabase-js";
+import Dialog from "./Dialog";
 
 export function ItemModal({
   addDialog,
@@ -60,7 +61,8 @@ export function ItemModal({
         end_date: endDate,
         user_id: user.id,
       })
-      .select().single();
+      .select()
+      .single();
 
     if (error) alert(error.message);
     else {
@@ -124,83 +126,72 @@ export function ItemModal({
   };
 
   return (
-    <dialog
-      className="md:w-1/2 w-full backdrop:bg-gray-600 backdrop:opacity-80"
-      ref={addDialog}
-    >
-      <div className="container p-8 flex justify-between items-start bg-white text-black dark:bg-gray-900 dark:text-white">
-        <div className="w-full">
-          <h2 className="text-2xl">Add Item</h2>
-          <form className="space-y-6 mt-4" onSubmit={submit}>
-            <label htmlFor="name">Task</label>
+    <Dialog dialogRef={addDialog} title="Add a new task">
+      <form className="space-y-6 mt-4" onSubmit={submit}>
+        <label htmlFor="name">Task</label>
+        <input
+          className="block w-full rounded border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-200 sm:text-sm sm:leading-6"
+          id="name"
+          type="text"
+          required
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+
+        <fieldset className="flex">
+          <legend className="text-lg">Dates</legend>
+
+          <div className="w-full p-2 pl-0">
+            <label htmlFor="end-date">End date</label>
             <input
               className="block w-full rounded border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-200 sm:text-sm sm:leading-6"
-              id="name"
-              type="text"
+              id="end-date"
+              type="date"
               required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              defaultValue={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
             />
+          </div>
+          <div className="w-full p-2 pl-0">
+            <label htmlFor="start-date">Start date</label>
+            <input
+              className="block w-full rounded border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-200 sm:text-sm sm:leading-6"
+              id="start-date"
+              type="date"
+              required
+              defaultValue={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            />
+          </div>
+        </fieldset>
 
-            <fieldset className="flex">
-              <legend className="text-lg">Dates</legend>
-
-              <div className="w-full p-2 pl-0">
-                <label htmlFor="end-date">End date</label>
-                <input
-                  className="block w-full rounded border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-200 sm:text-sm sm:leading-6"
-                  id="end-date"
-                  type="date"
-                  required
-                  defaultValue={endDate}
-                  onChange={(e) => setEndDate(e.target.value)}
-                />
-              </div>
-              <div className="w-full p-2 pl-0">
-                <label htmlFor="start-date">Start date</label>
-                <input
-                  className="block w-full rounded border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-200 sm:text-sm sm:leading-6"
-                  id="start-date"
-                  type="date"
-                  required
-                  defaultValue={startDate}
-                  onChange={(e) => setStartDate(e.target.value)}
-                />
-              </div>
-            </fieldset>
-
-            <div className="flex">
-              <button
-                type="submit"
-                formMethod="dialog"
-                disabled={loading}
-                className="rounded bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-              >
-                {loading ? "Loading" : !item?.id ? "Add" : "Update"}
-              </button>
-              <button
-                type="button"
-                className="rounded bg-gray-200 px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-100 ml-2"
-                disabled={loading}
-                onClick={() => addDialog.current?.close()}
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                className="rounded bg-gray-200 px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-100 ml-2"
-                disabled={loading}
-                onClick={() => deleteTodo(item?.id)}
-              >
-                Delete
-              </button>
-            </div>
-          </form>
+        <div className="flex">
+          <button
+            type="submit"
+            formMethod="dialog"
+            disabled={loading}
+            className="rounded bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          >
+            {loading ? "Loading" : !item?.id ? "Add" : "Update"}
+          </button>
+          <button
+            type="button"
+            className="rounded bg-gray-200 px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-100 ml-2"
+            disabled={loading}
+            onClick={() => addDialog.current?.close()}
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            className="rounded bg-gray-200 px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-100 ml-2"
+            disabled={loading}
+            onClick={() => deleteTodo(item?.id)}
+          >
+            Delete
+          </button>
         </div>
-        <button onClick={() => addDialog.current?.close()}>
-          <i className="ri-close-line">Close</i>
-        </button>
-      </div>
-    </dialog>
+      </form>
+    </Dialog>
   );
 }

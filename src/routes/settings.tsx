@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import "./App.css";
-import Account from "./components/Account";
-import Auth from "./components/Auth";
-import { supabase } from "./helpers/supabase";
 import { Session } from "@supabase/supabase-js";
+import { supabase } from "../helpers/supabase";
+import Account from "../features/Settings";
 
-function App() {
+function Settings() {
   const [session, setSession] = useState<Session | null>();
 
   useEffect(() => {
@@ -17,14 +15,8 @@ function App() {
   }, []);
 
   return (
-    <div>
-      {!session ? (
-        <Auth />
-      ) : (
-        <Account key={session.user.id} session={session} />
-      )}
-    </div>
+    <div>{session && <Account key={session.user.id} session={session} />}</div>
   );
 }
 
-export default App;
+export default Settings;

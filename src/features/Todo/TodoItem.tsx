@@ -1,5 +1,5 @@
-import { supabase } from "../helpers/supabase";
-import { Todo } from "../type";
+import { supabase } from "../../helpers/supabase";
+import { Todo } from "../../type";
 
 export default function TodoItem({
   item,

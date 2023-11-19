@@ -7,25 +7,26 @@ export default function Root() {
 
   return (
     <div className="flex">
-      <aside className="flex flex-col w-1/5">
+      <aside className="flex flex-col w-1/5 h-[100vh] px-4 bg-gray-200">
         <NavLink
           to={`/`}
           className={({ isActive }) =>
-            isActive ? "text-red-600" : "text-black"
+            `${isActive ? "text-red-600" : "text-black"} mt-10 p-2`
           }
         >
           Home
         </NavLink>
         <NavLink
-          to={`app`}
+          to={`settings`}
           className={({ isActive }) =>
-            isActive ? "text-red-600" : "text-black"
+            `${isActive ? "text-red-600" : "text-black"} p-2`
           }
         >
           Settings
         </NavLink>
         <button
           type="button"
+          className="mt-auto mb-4 w-1/2 justify-center rounded bg-gray-600 h-10 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
           onClick={() => {
             supabase.auth.signOut();
             navigate("/login");
