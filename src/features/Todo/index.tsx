@@ -3,7 +3,6 @@ import { supabase } from "../../helpers/supabase";
 import { Todo } from "../../type";
 import TodoItem from "./TodoItem";
 import { ItemModal } from "../../components/ItemModal";
-import { Session } from "@supabase/supabase-js";
 
 export default function TodoList() {
   const [loading, setLoading] = useState(true);

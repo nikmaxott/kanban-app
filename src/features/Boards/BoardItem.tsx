@@ -1,4 +1,5 @@
 import { Board } from ".";
+
 const BoardItem = ({ board }: { board: Board }) => {
   return (
     <div>
