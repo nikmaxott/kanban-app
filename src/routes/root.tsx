@@ -17,7 +17,7 @@ export default function Root() {
           Home
         </NavLink>
         <NavLink
-          to={`app`}
+          to={`settings`}
           className={({ isActive }) =>
             `${isActive ? "text-red-600" : "text-black"} p-2`
           }

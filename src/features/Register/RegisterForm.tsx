@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { supabase } from "../helpers/supabase";
+import { supabase } from "../../helpers/supabase";
 
 export default function RegisterForm() {
   const [loading, setLoading] = useState(false);

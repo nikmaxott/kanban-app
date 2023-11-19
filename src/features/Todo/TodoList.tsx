@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { supabase } from "../helpers/supabase";
-import { Todo } from "../type";
+import { supabase } from "../../helpers/supabase";
+import { Todo } from "../../type";
 import TodoItem from "./TodoItem";
-import { ItemModal } from "./ItemModal";
+import { ItemModal } from "../../components/ItemModal";
+import { Session } from "@supabase/supabase-js";
 
 export default function TodoList() {
   const [loading, setLoading] = useState(true);
@@ -30,8 +31,6 @@ export default function TodoList() {
 
     getList();
   }, []);
-
-  // useEffect(() => {}, [todos]);
 
   return (
     <>

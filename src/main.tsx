@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
 import {
   createBrowserRouter,
   LoaderFunctionArgs,
@@ -8,14 +7,15 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
-import Root from "./routes/root.js";
-import ErrorPage from "./error-page.js";
-import Register from "./routes/register.js";
-import Index from "./routes/index.js";
-import { supabase } from "./helpers/supabase.js";
-import Login from "./routes/login.js";
-import ForgotPassword from "./routes/forgot-password.js";
-import UpdatePassword from "./routes/update-password.js";
+import Root from "./routes/root";
+import ErrorPage from "./error-page";
+import Register from "./routes/register";
+import Index from "./routes/index";
+import { supabase } from "./helpers/supabase";
+import Login from "./routes/login";
+import ForgotPassword from "./routes/forgot-password";
+import UpdatePassword from "./routes/update-password";
+import Settings from "./routes/settings";
 
 const router = createBrowserRouter([
   {
@@ -29,8 +29,8 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <Index /> },
           {
-            path: "app",
-            element: <App />,
+            path: "settings",
+            element: <Settings />,
           },
         ],
       },

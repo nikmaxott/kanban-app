@@ -1,12 +1,9 @@
-import BoardView from "../components/BoardView";
-import TodoList from "../components/TodoList";
+import BoardView from "../features/Boards/BoardView";
+import TodoList from "../features/Todo/TodoList";
 import { useState } from "react";
-import { supabase } from "../helpers/supabase";
 
 export default function Index() {
   const [isListView, setIsListView] = useState(true);
-
-  const { data } = await supabase.auth.getSession();
 
   const toggleView = () => {
     setIsListView(!isListView);

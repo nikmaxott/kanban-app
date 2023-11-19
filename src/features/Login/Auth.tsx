@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { supabase } from "../helpers/supabase";
+import { supabase } from "../../helpers/supabase";
 import { useNavigate } from "react-router-dom";
 
 export default function Auth() {

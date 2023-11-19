@@ -1,18 +1,17 @@
 import { FormEvent, useState } from "react";
-import { supabase } from "../helpers/supabase";
+import { supabase } from "../../helpers/supabase";
 
 export default function ForgotPasswordForm() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
-  
 
   async function handleReset(event: FormEvent) {
     event.preventDefault();
 
     setLoading(true);
-    const { data, error } = await supabase.auth.resetPasswordForEmail(email,{
-        redirectTo: 'http://localhost:5173/update-password',
-      });
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: "http://localhost:5173/update-password",
+    });
 
     console.log(data, error);
 
@@ -42,7 +41,6 @@ export default function ForgotPasswordForm() {
       >
         {loading ? <span>Loading</span> : <span>Reset Password</span>}
       </button>
-    
     </form>
   );
 }

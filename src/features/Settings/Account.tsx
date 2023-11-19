@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useState } from "react";
-import { supabase } from "../helpers/supabase";
+import { supabase } from "../../helpers/supabase";
 import { Session } from "@supabase/supabase-js";
 import Avatar from "./Avatar";
 
